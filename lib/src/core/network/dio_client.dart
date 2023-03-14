@@ -16,19 +16,13 @@ class DioClient {
   // injecting dio instance
   DioClient(this._dio) {
     _dio
-      ..options.baseUrl = ApplicationConstants.baseURL
+      ..options.baseUrl = ApplicationConstants.apodApiURL
       ..options.connectTimeout = connectionTimeout
       ..options.receiveTimeout = receiveTimeout
       ..options.responseType = ResponseType.json
-      ..options.headers = {'x-api-key': ApplicationConstants.apiKEY}
+      ..options.headers = {'x-api-key': ApplicationConstants.apodApiKey}
       ..interceptors.add(LoggyDioInterceptor())
-      ..interceptors.add(PrettyDioLogger())
-      ..interceptors.add(
-        LogInterceptor(
-          requestBody: true,
-          responseBody: true,
-        ),
-      )
+      // ..interceptors.add(PrettyDioLogger())
       ..interceptors.add(
         RetryInterceptor(
           dio: _dio,
