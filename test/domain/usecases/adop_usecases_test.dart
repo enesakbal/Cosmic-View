@@ -28,33 +28,33 @@ void main() {
   setUp(() {
     dotenv.testLoad(fileInput: File('.env').readAsStringSync());
     dio = Dio();
+    mockApodRepository = MockAPODRepository();
+    apodUsecase = APODUsecase(mockApodRepository);
+    mockDioAdapter = DioAdapter(dio: dio);
+    dio.httpClientAdapter = mockDioAdapter;
+
+    final data = readJson('apod_dummy_data.json') as List<dynamic>;
+
+    dummyData = data
+        .map((e) => APODModel.fromJson(e as Map<String, dynamic>))
+        .toList()
+        .map((e) => e.toEntity())
+        .toList();
   });
 
   group('APOD Repository (GET DATA) (dummy data) =>', () {
-    setUp(() {
-      mockApodRepository = MockAPODRepository();
-      apodUsecase = APODUsecase(mockApodRepository);
-      mockDioAdapter = DioAdapter(dio: dio);
-      dio.httpClientAdapter = mockDioAdapter;
-
-      final data = readJson('apod_dummy_data.json') as List<dynamic>;
-
-      dummyData = data
-          .map((e) => APODModel.fromJson(e as Map<String, dynamic>))
-          .toList()
-          .map((e) => e.toEntity())
-          .toList();
-    });
-
+    const testCount = 20;
     test('Should get all data from repository', () async {
-      when(mockApodRepository.getAPODData()).thenAnswer((_) async {
+      when(mockApodRepository.getAPODData(count: testCount))
+          .thenAnswer((_) async {
         return Right(dummyData);
       });
 
-      final response = await apodUsecase.getAPODData();
+      final response = await apodUsecase.getAPODData(count: testCount);
 
       expect(response.isRight(), true);
       expect(response, equals(Right(dummyData)));
+      expect(testCount <= Right(dummyData).value.length, true);
     });
 
     test('Shouldnt get all data from repository. (ERROR CASE)', () async {
@@ -63,11 +63,12 @@ void main() {
         error: 'Something went wrong. (TEST ERROR)',
       ));
 
-      when(mockApodRepository.getAPODData()).thenAnswer((_) async {
+      when(mockApodRepository.getAPODData(count: testCount))
+          .thenAnswer((_) async {
         return Left(error);
       });
 
-      final response = await apodUsecase.getAPODData();
+      final response = await apodUsecase.getAPODData(count: testCount);
 
       expect(response.isLeft(), true);
       expect(response, equals(Left(error)));
