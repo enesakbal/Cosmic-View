@@ -45,7 +45,7 @@ class MockAPODRemoteDataSource extends _i1.Mock
   }
 
   @override
-  _i4.Future<List<_i5.APODModel>> getAPODData({int? count}) =>
+  _i4.Future<List<_i5.APODModel>> getAPODData({required int? count}) =>
       (super.noSuchMethod(
         Invocation.method(
           #getAPODData,
@@ -66,7 +66,7 @@ class MockAPODRepository extends _i1.Mock implements _i6.APODRepository {
 
   @override
   _i4.Future<_i2.Either<_i7.NetworkExceptions, List<_i8.APOD>>> getAPODData(
-          {int? count = 5}) =>
+          {required int? count}) =>
       (super.noSuchMethod(
         Invocation.method(
           #getAPODData,
