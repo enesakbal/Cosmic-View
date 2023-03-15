@@ -51,6 +51,5 @@ class MyApp extends StatelessWidget {
   }
 
   //* fluttergen'i kurabilmek için Xcode'u update et. (brew install FlutterGen/tap/fluttergen)
-  //* test yazılacak.
-  //* yazdığın data sourceları vsleri önce testini yazıp sonra kullan.
+  //* ikinci apinin modelini ve entitiysini oluştur. ona özel bir data soruce yaz daha sonra hepsinin testini yaz.
 }

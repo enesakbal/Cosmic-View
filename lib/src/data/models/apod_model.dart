@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../../domain/entities/apod.dart';
+import '../../domain/entities/apod.dart';
 
 part 'apod_model.g.dart';
 

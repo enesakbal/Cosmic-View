@@ -1,4 +1,4 @@
-import 'package:cosmicview/src/data/models/apod_model/apod_model.dart';
+import 'package:cosmicview/src/data/models/apod_model.dart';
 import 'package:cosmicview/src/domain/entities/apod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
