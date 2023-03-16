@@ -12,10 +12,10 @@ class APODRepositoryImpl implements APODRepository {
   APODRepositoryImpl(this.dataSource);
 
   @override
-  Future<Either<NetworkExceptions, List<APOD>>> getAPODData(
+  Future<Either<NetworkExceptions, List<APOD>>> fetchAPODData(
       {required int count}) async {
     try {
-      final result = await dataSource.getAPODData(count: count);
+      final result = await dataSource.fetchAPODData(count: count);
 
       final data = result.map((e) => e.toEntity()).toList();
 
