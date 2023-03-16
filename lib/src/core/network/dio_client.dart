@@ -1,26 +1,30 @@
-
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
 
+import '../../domain/entities/apod.dart';
 import '../constants/app_constants.dart';
+import '../enums/dio_client_enum.dart';
 
-class DioClient {
+class DioClient<T extends ClientEnum> {
   // dio instance
   final Dio _dio;
+  final T clientType;
 
   // injecting dio instance
-  DioClient(this._dio) {
+  DioClient(
+    this._dio,
+    this.clientType,
+  ) {
     _dio
-      ..options.baseUrl = ApplicationConstants.apodApiURL
+      ..options.baseUrl = clientType.getBaseURL()
       ..options.connectTimeout = connectionTimeout
       ..options.receiveTimeout = receiveTimeout
       ..options.responseType = ResponseType.json
-      ..options.headers = {'x-api-key': ApplicationConstants.apodApiKey}
+      ..options.headers = clientType.getApiKey()
       ..interceptors.add(LoggyDioInterceptor())
-      // ..interceptors.add(PrettyDioLogger())
       ..interceptors.add(
         RetryInterceptor(
           dio: _dio,
