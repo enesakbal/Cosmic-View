@@ -6,7 +6,6 @@ import 'package:rive/rive.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../main.dart';
 import '../../config/app_router.dart';
-import '../../core/rive/rive_assets.dart';
 
 class SplashView extends HookWidget {
   const SplashView({super.key});
@@ -15,7 +14,7 @@ class SplashView extends HookWidget {
   Widget build(BuildContext context) {
     useEffect(() {
       Future.delayed(const Duration(seconds: 1), () {
-        router.replace(HomeRoute());
+        router.replace(const HomeRoute());
       });
 
       return () {};

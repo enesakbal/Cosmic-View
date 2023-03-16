@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:cosmicview/src/core/constants/url_constants.dart';
 import 'package:cosmicview/src/core/network/network_exception.dart';
-import 'package:cosmicview/src/data/models/apod_model.dart';
+import 'package:cosmicview/src/data/models/apod_model/apod_model.dart';
 import 'package:cosmicview/src/domain/entities/apod.dart';
 import 'package:cosmicview/src/domain/usecases/apod_usecase.dart';
 import 'package:dartz/dartz.dart';

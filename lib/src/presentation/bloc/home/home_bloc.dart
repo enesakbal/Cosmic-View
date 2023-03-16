@@ -13,7 +13,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<FetchApodData>((event, emit) async {
       emit(const HomeLoading());
 
-      final result = await apodUsecase.getAPODData(count: event.count);
+      final result = await apodUsecase.fetchAPODData(count: event.count);
 
       result.fold((failure) {
         emit(HomeError(message: failure.message));

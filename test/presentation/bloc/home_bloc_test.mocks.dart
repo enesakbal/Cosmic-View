@@ -41,11 +41,11 @@ class MockAPODUsecase extends _i1.Mock implements _i3.APODUsecase {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.NetworkExceptions, List<_i6.APOD>>> getAPODData(
+  _i4.Future<_i2.Either<_i5.NetworkExceptions, List<_i6.APOD>>> fetchAPODData(
           {required int? count}) =>
       (super.noSuchMethod(
         Invocation.method(
-          #getAPODData,
+          #fetchAPODData,
           [],
           {#count: count},
         ),
@@ -54,7 +54,7 @@ class MockAPODUsecase extends _i1.Mock implements _i3.APODUsecase {
                 _FakeEither_0<_i5.NetworkExceptions, List<_i6.APOD>>(
           this,
           Invocation.method(
-            #getAPODData,
+            #fetchAPODData,
             [],
             {#count: count},
           ),

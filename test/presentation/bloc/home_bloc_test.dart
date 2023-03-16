@@ -1,6 +1,7 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:cosmicview/src/core/constants/url_constants.dart';
 import 'package:cosmicview/src/core/network/network_exception.dart';
-import 'package:cosmicview/src/data/models/apod_model.dart';
+import 'package:cosmicview/src/data/models/apod_model/apod_model.dart';
 import 'package:cosmicview/src/domain/entities/apod.dart';
 import 'package:cosmicview/src/domain/usecases/apod_usecase.dart';
 import 'package:cosmicview/src/presentation/bloc/home/home_bloc.dart';
@@ -12,8 +13,6 @@ import 'package:mockito/mockito.dart';
 
 import '../../_helpers/json_reader.dart';
 import 'home_bloc_test.mocks.dart';
-
-import 'package:bloc_test/bloc_test.dart';
 
 @GenerateMocks([APODUsecase])
 void main() {
@@ -43,7 +42,7 @@ void main() {
     blocTest<HomeBloc, HomeState>(
       'should emit [loading, has data] when [FetchApodData] get data is successful',
       build: () {
-        when(usecase.getAPODData(count: 5))
+        when(usecase.fetchAPODData(count: 5))
             .thenAnswer((_) async => Right(dummyData));
 
         return homeBloc;
@@ -55,13 +54,13 @@ void main() {
         HomeHasData(dataList: dummyData),
       ],
       verify: (bloc) {
-        verify(usecase.getAPODData(count: 5));
+        verify(usecase.fetchAPODData(count: 5));
       },
     );
     blocTest<HomeBloc, HomeState>(
       'should emit [loading, error] when [FetchApodData] get data is UNsuccessful',
       build: () {
-        when(usecase.getAPODData(count: 5))
+        when(usecase.fetchAPODData(count: 5))
             .thenAnswer((_) async => Left(NetworkExceptions.fromDioError(
                   DioError(
                       requestOptions: RequestOptions(
@@ -78,7 +77,7 @@ void main() {
         const HomeError(message: 'Unexpected error occurred'),
       ],
       verify: (bloc) {
-        verify(usecase.getAPODData(count: 5));
+        verify(usecase.fetchAPODData(count: 5));
       },
     );
   });

@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
-import 'datum.dart';
+import 'data.dart';
 import 'link.dart';
 
 class Item extends Equatable {
   final String? href;
-  final List<Datum>? data;
+  final List<Data>? data;
   final List<Link>? links;
 
   const Item({this.href, this.data, this.links});
@@ -13,7 +13,7 @@ class Item extends Equatable {
   factory Item.fromJson(Map<String, dynamic> json) => Item(
         href: json['href'] as String?,
         data: (json['data'] as List<dynamic>?)
-            ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => Data.fromJson(e as Map<String, dynamic>))
             .toList(),
         links: (json['links'] as List<dynamic>?)
             ?.map((e) => Link.fromJson(e as Map<String, dynamic>))

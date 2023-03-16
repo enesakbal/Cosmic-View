@@ -24,11 +24,9 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     HomeRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return AdaptivePage<dynamic>(
         routeData: routeData,
-        child: HomeView(key: args.key),
+        child: const HomeView(),
       );
     },
   };
@@ -60,24 +58,12 @@ class SplashRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [HomeView]
-class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({Key? key})
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute()
       : super(
           HomeRoute.name,
           path: '/home-view',
-          args: HomeRouteArgs(key: key),
         );
 
   static const String name = 'HomeRoute';
-}
-
-class HomeRouteArgs {
-  const HomeRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'HomeRouteArgs{key: $key}';
-  }
 }

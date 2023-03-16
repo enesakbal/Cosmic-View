@@ -4,7 +4,7 @@ import 'package:cosmicview/src/core/constants/url_constants.dart';
 import 'package:cosmicview/src/core/enums/dio_client_enum.dart';
 import 'package:cosmicview/src/core/network/dio_client.dart';
 import 'package:cosmicview/src/data/datasources/remote/apod/apod_remote_data_source.dart';
-import 'package:cosmicview/src/data/models/apod_model.dart';
+import 'package:cosmicview/src/data/models/apod_model/apod_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -39,8 +39,6 @@ void main() {
     test('Should status code 200', () async {
       final response = await dioClient.get(UrlContants.baseApod);
 
-      print(response.data);
-
       expect(response.statusCode, 200);
     });
 
@@ -51,9 +49,6 @@ void main() {
 
       final response =
           await realAPODRemoteDataSource.fetchAPODData(count: testCount);
-
-      print(response);
-
 
       expect(response.length == testCount, true);
       expect(response, isA<List<APODModel>>());

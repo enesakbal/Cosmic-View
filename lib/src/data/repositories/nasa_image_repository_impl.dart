@@ -7,7 +7,7 @@ import '../datasources/remote/nasa_image/nasa_image_remote_data_source.dart';
 import '../models/nasa_image_model/nasa_image_model.dart';
 
 class NasaImageRepositoryImpl implements NasaImageRepository {
-  NasaImageRemoteDataSource _dataSource;
+  final NasaImageRemoteDataSource _dataSource;
 
   NasaImageRepositoryImpl(this._dataSource);
 

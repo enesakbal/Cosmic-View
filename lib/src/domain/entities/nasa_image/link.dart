@@ -1,13 +1,28 @@
-class Link {
-  Link();
+import 'package:equatable/equatable.dart';
 
-  factory Link.fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError('Link.fromJson($json) is not implemented');
-  }
+class Link extends Equatable {
+  final String? href;
+  final String? rel;
+  final String? render;
 
-  Map<String, dynamic> toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
-  }
+  const Link({
+    this.href,
+    this.rel,
+    this.render,
+  });
+
+  factory Link.fromJson(Map<String, dynamic> json) => Link(
+        href: json['href'] as String?,
+        rel: json['rel'] as String?,
+        render: json['render'] as String?,
+      );
+
+  Map<String, dynamic> toJson() => {
+        'href': href,
+        'rel': rel,
+        'render': render,
+      };
+
+  @override
+  List<Object?> get props => [href, rel, render];
 }

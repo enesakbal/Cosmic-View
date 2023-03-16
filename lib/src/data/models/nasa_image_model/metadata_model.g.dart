@@ -1,15 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'metadata.dart';
+part of 'metadata_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Metadata _$MetadataFromJson(Map<String, dynamic> json) => Metadata(
+MetadataModel _$MetadataModelFromJson(Map<String, dynamic> json) =>
+    MetadataModel(
       totalHits: json['total_hits'] as int?,
     );
 
-Map<String, dynamic> _$MetadataToJson(Metadata instance) => <String, dynamic>{
+Map<String, dynamic> _$MetadataModelToJson(MetadataModel instance) =>
+    <String, dynamic>{
       'total_hits': instance.totalHits,
     };

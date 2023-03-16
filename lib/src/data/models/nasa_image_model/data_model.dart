@@ -1,10 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'data.g.dart';
+import '../../../domain/entities/nasa_image/data.dart';
+
+part 'data_model.g.dart';
 
 @JsonSerializable()
-class Data extends Equatable {
+class DataModel extends Equatable {
   final String? center;
   @JsonKey(name: 'date_created')
   final String? dateCreated;
@@ -18,7 +20,7 @@ class Data extends Equatable {
   final String? secondaryCreator;
   final String? title;
 
-  const Data({
+  const DataModel({
     this.center,
     this.dateCreated,
     this.description,
@@ -29,9 +31,21 @@ class Data extends Equatable {
     this.title,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
+  factory DataModel.fromJson(Map<String, dynamic> json) =>
+      _$DataModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DataToJson(this);
+  Map<String, dynamic> toJson() => _$DataModelToJson(this);
+
+  Data toEntity() => Data(
+        center: center,
+        dateCreated: dateCreated,
+        description: description,
+        keywords: keywords,
+        mediaType: mediaType,
+        nasaId: nasaId,
+        secondaryCreator: secondaryCreator,
+        title: title,
+      );
 
   @override
   bool get stringify => true;

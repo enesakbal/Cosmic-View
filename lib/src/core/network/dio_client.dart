@@ -4,8 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:dio_smart_retry/dio_smart_retry.dart';
 import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
 
-import '../../domain/entities/apod.dart';
-import '../constants/app_constants.dart';
 import '../enums/dio_client_enum.dart';
 
 class DioClient<T extends ClientEnum> {

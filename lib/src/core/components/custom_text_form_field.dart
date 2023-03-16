@@ -60,12 +60,12 @@ class CustomTextFormField extends StatelessWidget {
                 color: Colors.transparent,
               ),
             ),
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 color: Colors.white,
               ),
             ),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 color: Colors.white,
               ),
@@ -75,15 +75,15 @@ class CustomTextFormField extends StatelessWidget {
                 color: Colors.transparent,
               ),
             ),
-            errorStyle: TextStyle(
+            errorStyle: const TextStyle(
               color: Colors.white,
             ),
-            errorBorder: OutlineInputBorder(
+            errorBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 color: Colors.white,
               ),
             ),
-            focusedErrorBorder: OutlineInputBorder(
+            focusedErrorBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white, width: 2.5),
             ),
             prefixIcon: prefixIcon,

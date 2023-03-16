@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class Datum extends Equatable {
+class Data extends Equatable {
   final String? center;
   final String? dateCreated;
   final String? description;
@@ -10,7 +10,7 @@ class Datum extends Equatable {
   final String? secondaryCreator;
   final String? title;
 
-  const Datum({
+  const Data({
     this.center,
     this.dateCreated,
     this.description,
@@ -21,7 +21,7 @@ class Datum extends Equatable {
     this.title,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory Data.fromJson(Map<String, dynamic> json) => Data(
         center: json['center'] as String?,
         dateCreated: json['date_created'] as String?,
         description: json['description'] as String?,

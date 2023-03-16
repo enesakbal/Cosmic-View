@@ -3,10 +3,8 @@ import 'dart:io';
 import 'package:cosmicview/src/core/constants/url_constants.dart';
 import 'package:cosmicview/src/core/enums/dio_client_enum.dart';
 import 'package:cosmicview/src/core/network/dio_client.dart';
-import 'package:cosmicview/src/data/datasources/remote/apod/apod_remote_data_source.dart';
 import 'package:cosmicview/src/data/datasources/remote/nasa_image/nasa_image_remote_data_source.dart';
-import 'package:cosmicview/src/data/models/apod_model.dart';
-import 'package:cosmicview/src/data/models/nasa_image_model/collection.dart';
+import 'package:cosmicview/src/data/models/nasa_image_model/collection_model.dart';
 import 'package:cosmicview/src/data/models/nasa_image_model/nasa_image_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -51,7 +49,7 @@ void main() {
     });
 
     test('Data converted to NasaImageModel.', () async {
-      const testItemCount = 10;
+      const testItemCount = 4;
       const searchString = 'cosmos';
       const keywords = 'cosmos';
 
@@ -109,7 +107,7 @@ void main() {
           dummyModel.collection!.items!.take(testItemCount);
 
           return NasaImageModel(
-              collection: Collection(
+              collection: CollectionModel(
             href: dummyModel.collection!.href,
             items: dummyModel.collection!.items!.take(testItemCount).toList(),
             links: dummyModel.collection!.links,

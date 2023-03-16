@@ -10,7 +10,7 @@ import 'package:cosmicview/src/data/datasources/remote/apod/apod_remote_data_sou
     as _i4;
 import 'package:cosmicview/src/data/datasources/remote/nasa_image/nasa_image_remote_data_source.dart'
     as _i10;
-import 'package:cosmicview/src/data/models/apod_model.dart' as _i6;
+import 'package:cosmicview/src/data/models/apod_model/apod_model.dart' as _i6;
 import 'package:cosmicview/src/data/models/nasa_image_model/nasa_image_model.dart'
     as _i3;
 import 'package:cosmicview/src/domain/entities/apod.dart' as _i9;

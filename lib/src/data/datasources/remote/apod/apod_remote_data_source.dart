@@ -1,10 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:dio/dio.dart';
-
 import '../../../../core/constants/url_constants.dart';
 import '../../../../core/enums/dio_client_enum.dart';
 import '../../../../core/network/dio_client.dart';
-import '../../../models/apod_model.dart';
+import '../../../models/apod_model/apod_model.dart';
 
 abstract class APODRemoteDataSource {
   Future<List<APODModel>> fetchAPODData({required int count});

@@ -10,7 +10,8 @@ NasaImageModel _$NasaImageModelFromJson(Map<String, dynamic> json) =>
     NasaImageModel(
       collection: json['collection'] == null
           ? null
-          : Collection.fromJson(json['collection'] as Map<String, dynamic>),
+          : CollectionModel.fromJson(
+              json['collection'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$NasaImageModelToJson(NasaImageModel instance) =>

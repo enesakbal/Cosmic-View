@@ -2,13 +2,13 @@ import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../../domain/entities/nasa_image/nasa_image.dart';
-import 'collection.dart';
+import 'collection_model.dart';
 
 part 'nasa_image_model.g.dart';
 
 @JsonSerializable()
 class NasaImageModel extends Equatable {
-  final Collection? collection;
+  final CollectionModel? collection;
 
   const NasaImageModel({this.collection});
 
@@ -17,6 +17,8 @@ class NasaImageModel extends Equatable {
   }
 
   Map<String, dynamic> toJson() => _$NasaImageModelToJson(this);
+
+  NasaImage toEntity() => NasaImage(collection: collection?.toEntity());
 
   @override
   bool get stringify => true;
