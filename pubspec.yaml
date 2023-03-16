@@ -11,6 +11,7 @@ dependencies:
 
   auto_route: ^5.0.4
   badges: ^3.0.2
+  bloc_test: ^9.1.1
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
@@ -69,4 +70,5 @@ flutter:
     - .env
     - assets/images/
     - assets/animation/
+    - assets/images/half_earth.jpg
 

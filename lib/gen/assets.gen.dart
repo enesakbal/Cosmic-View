@@ -9,8 +9,32 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsAnimationGen {
+  const $AssetsAnimationGen();
+
+  /// File path: assets/animation/superman.riv
+  String get superman => 'assets/animation/superman.riv';
+
+  /// List of all assets
+  List<String> get values => [superman];
+}
+
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/half_earth.jpg
+  AssetGenImage get halfEarth =>
+      const AssetGenImage('assets/images/half_earth.jpg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [halfEarth];
+}
+
 class Assets {
   Assets._();
+
+  static const $AssetsAnimationGen animation = $AssetsAnimationGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {

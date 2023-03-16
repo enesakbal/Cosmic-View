@@ -5,6 +5,5 @@ class ApplicationConstants {
   static final apodApiKey = '${dotenv.env['APOD_API_KEY']}';
   static final imagesApiURL = '${dotenv.env['IMAGES_API_URL']}';
 
-
-
+  static const halfEarth = 'assets/images/half_earth.jpg';
 }

@@ -6,6 +6,7 @@ import 'data/datasources/remote/apod/apod_remote_data_source.dart';
 import 'data/repositories/apod_repository_impl.dart';
 import 'domain/repositories/apod_repository.dart';
 import 'domain/usecases/apod_usecase.dart';
+import 'presentation/bloc/home/home_bloc.dart';
 
 final injector = GetIt.instance;
 
@@ -25,5 +26,8 @@ Future<void> init() async {
         () => APODRepositoryImpl(injector()))
 
     //* USECASE
-    ..registerLazySingleton<APODUsecase>(() => APODUsecase(injector()));
+    ..registerLazySingleton<APODUsecase>(() => APODUsecase(injector()))
+
+    //* BLOC
+    ..registerFactory(() => HomeBloc(injector()));
 }
