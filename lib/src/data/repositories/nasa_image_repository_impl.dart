@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
+import '../../core/enums/dio_client_enum.dart';
 import '../../core/network/network_exception.dart';
+import '../../domain/entities/nasa_image/nasa_image.dart';
 import '../../domain/repositories/nasa_image_repository.dart';
 import '../datasources/remote/nasa_image/nasa_image_remote_data_source.dart';
-import '../models/nasa_image_model/nasa_image_model.dart';
 
 class NasaImageRepositoryImpl implements NasaImageRepository {
   final NasaImageRemoteDataSource _dataSource;
@@ -12,7 +13,7 @@ class NasaImageRepositoryImpl implements NasaImageRepository {
   NasaImageRepositoryImpl(this._dataSource);
 
   @override
-  Future<Either<NetworkExceptions, NasaImageModel>> fetchNasaImageData({
+  Future<Either<NetworkExceptions, NasaImage>> fetchNasaImageData({
     required int count,
     String? searchString,
     String? location,
@@ -29,8 +30,8 @@ class NasaImageRepositoryImpl implements NasaImageRepository {
         startYear: startYear,
         endYear: endYear,
       );
-      final data;
-      return Right(result);
+      final data = result.toEntity();
+      return Right(data);
     } on DioError catch (e) {
       return Left(NetworkExceptions.fromDioError(e));
     }

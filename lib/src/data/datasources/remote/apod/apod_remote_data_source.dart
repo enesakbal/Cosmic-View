@@ -3,17 +3,18 @@ import '../../../../core/enums/dio_client_enum.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../models/apod_model/apod_model.dart';
 
-abstract class APODRemoteDataSource {
+abstract class APODRemoteDataSource<T extends DioClient> {
+  final T _dioClient;
+
+  APODRemoteDataSource(this._dioClient)
+      : assert(_dioClient.clientType == ClientEnum.APOD_CLIENT,
+            "CLIENT TYPE MUST BE 'APOD'");
+
   Future<List<APODModel>> fetchAPODData({required int count});
 }
 
-class APODRemoteDataSourceImpl<T extends DioClient>
-    extends APODRemoteDataSource {
-  final T _dioClient;
-
-  APODRemoteDataSourceImpl(this._dioClient)
-      : assert(_dioClient.clientType == ClientEnum.APOD_CLIENT,
-            "CLIENT TYPE MUST BE 'APOD'");
+class APODRemoteDataSourceImpl extends APODRemoteDataSource {
+  APODRemoteDataSourceImpl(super.dioClient);
 
   @override
   Future<List<APODModel>> fetchAPODData({required int count}) async {

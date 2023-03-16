@@ -3,7 +3,15 @@ import '../../../../core/enums/dio_client_enum.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../models/nasa_image_model/nasa_image_model.dart';
 
-abstract class NasaImageRemoteDataSource {
+abstract class NasaImageRemoteDataSource<T extends DioClient> {
+  final T _dioClient;
+
+  NasaImageRemoteDataSource(this._dioClient)
+      : assert(
+          _dioClient.clientType == ClientEnum.NASA_IMAGE_CLIENT,
+          "CLIENT TYPE MUST BE 'NASA_IMAGE_CLIENT'",
+        );
+
   Future<NasaImageModel> fetchNasaImageData({
     required int count,
     String? searchString,
@@ -14,15 +22,8 @@ abstract class NasaImageRemoteDataSource {
   });
 }
 
-class NasaImageRemoteDataSourceImpl<T extends DioClient>
-    implements NasaImageRemoteDataSource {
-  final T _dioClient;
-
-  NasaImageRemoteDataSourceImpl(this._dioClient)
-      : assert(
-          _dioClient.clientType == ClientEnum.NASA_IMAGE_CLIENT,
-          "CLIENT TYPE MUST BE 'NASA_IMAGE_CLIENT'",
-        );
+class NasaImageRemoteDataSourceImpl extends NasaImageRemoteDataSource {
+  NasaImageRemoteDataSourceImpl(super.dioClient);
 
   @override
   Future<NasaImageModel> fetchNasaImageData({

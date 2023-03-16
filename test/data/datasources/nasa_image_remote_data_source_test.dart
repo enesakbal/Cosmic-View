@@ -21,7 +21,7 @@ void main() {
   late DioClient dioClient;
   late DioAdapter mockDioAdapter;
   late MockNasaImageRemoteDataSource mockNasaImageDataSource;
-  late NasaImageRemoteDataSource realNasaImageDataSource;
+  late NasaImageRemoteDataSource<DioClient> realNasaImageDataSource;
 
   late Map<String, dynamic> dummyData;
 
@@ -33,10 +33,9 @@ void main() {
   });
 
 //* LIVE
-  group('NASA IMAGE Remote Data source (FETCH DATA) (real data) =>', () {
+  group('Nasa Image Remote Data source (FETCH DATA) (real data) =>', () {
     setUp(() {
-      realNasaImageDataSource =
-          NasaImageRemoteDataSourceImpl<DioClient>(dioClient);
+      realNasaImageDataSource = NasaImageRemoteDataSourceImpl(dioClient);
     });
 
     test('Should status code 200', () async {
@@ -64,7 +63,7 @@ void main() {
     });
   });
 
-  group('NASA IMAGE Remote Data source (FETCH DATA) (dummy data) =>', () {
+  group('NASA Image Remote Data source (FETCH DATA) (dummy data) =>', () {
     setUp(() {
       mockDioAdapter = DioAdapter(dio: dio);
       dio.httpClientAdapter = mockDioAdapter;

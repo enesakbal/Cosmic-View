@@ -3,18 +3,15 @@ import 'package:cosmicview/src/core/constants/url_constants.dart';
 import 'package:cosmicview/src/core/network/network_exception.dart';
 import 'package:cosmicview/src/data/models/apod_model/apod_model.dart';
 import 'package:cosmicview/src/domain/entities/apod.dart';
-import 'package:cosmicview/src/domain/usecases/apod_usecase.dart';
 import 'package:cosmicview/src/presentation/bloc/home/home_bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../_helpers/_mocks/mocks.mocks.dart';
 import '../../_helpers/json_reader.dart';
-import 'home_bloc_test.mocks.dart';
 
-@GenerateMocks([APODUsecase])
 void main() {
   late MockAPODUsecase usecase;
   late HomeBloc homeBloc;
@@ -63,10 +60,11 @@ void main() {
         when(usecase.fetchAPODData(count: 5))
             .thenAnswer((_) async => Left(NetworkExceptions.fromDioError(
                   DioError(
-                      requestOptions: RequestOptions(
-                        path: UrlContants.baseApod,
-                      ),
-                      type: DioErrorType.other),
+                    requestOptions: RequestOptions(
+                      path: UrlContants.baseApod,
+                    ),
+                    type: DioErrorType.other,
+                  ),
                 )));
         return homeBloc;
       },

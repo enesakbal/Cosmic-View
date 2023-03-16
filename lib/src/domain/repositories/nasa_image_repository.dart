@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
 
 import '../../core/network/network_exception.dart';
-import '../../data/models/nasa_image_model/nasa_image_model.dart';
+import '../entities/nasa_image/nasa_image.dart';
 
 abstract class NasaImageRepository {
-  Future<Either<NetworkExceptions, NasaImageModel>> fetchNasaImageData({
+  Future<Either<NetworkExceptions, NasaImage>> fetchNasaImageData({
     required int count,
     String? searchString,
     String? location,

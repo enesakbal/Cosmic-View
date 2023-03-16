@@ -3,18 +3,26 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i7;
 
-import 'package:cosmicview/src/core/network/network_exception.dart' as _i8;
+import 'package:cosmicview/src/core/enums/dio_client_enum.dart' as _i5;
+import 'package:cosmicview/src/core/network/dio_client.dart' as _i4;
+import 'package:cosmicview/src/core/network/network_exception.dart' as _i10;
 import 'package:cosmicview/src/data/datasources/remote/apod/apod_remote_data_source.dart'
-    as _i4;
+    as _i6;
 import 'package:cosmicview/src/data/datasources/remote/nasa_image/nasa_image_remote_data_source.dart'
-    as _i10;
-import 'package:cosmicview/src/data/models/apod_model/apod_model.dart' as _i6;
+    as _i13;
+import 'package:cosmicview/src/data/models/apod_model/apod_model.dart' as _i8;
 import 'package:cosmicview/src/data/models/nasa_image_model/nasa_image_model.dart'
     as _i3;
-import 'package:cosmicview/src/domain/entities/apod.dart' as _i9;
-import 'package:cosmicview/src/domain/repositories/apod_repository.dart' as _i7;
+import 'package:cosmicview/src/domain/entities/apod.dart' as _i11;
+import 'package:cosmicview/src/domain/entities/nasa_image/nasa_image.dart'
+    as _i15;
+import 'package:cosmicview/src/domain/repositories/apod_repository.dart' as _i9;
+import 'package:cosmicview/src/domain/repositories/nasa_image_repository.dart'
+    as _i14;
+import 'package:cosmicview/src/domain/usecases/apod_usecase.dart' as _i12;
+import 'package:cosmicview/src/domain/usecases/nasa_image_usecase.dart' as _i16;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -53,34 +61,34 @@ class _FakeNasaImageModel_1 extends _i1.SmartFake
 /// A class which mocks [APODRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAPODRemoteDataSource extends _i1.Mock
-    implements _i4.APODRemoteDataSource {
+class MockAPODRemoteDataSource<T extends _i4.DioClient<_i5.ClientEnum>>
+    extends _i1.Mock implements _i6.APODRemoteDataSource<T> {
   MockAPODRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<List<_i6.APODModel>> fetchAPODData({required int? count}) =>
+  _i7.Future<List<_i8.APODModel>> fetchAPODData({required int? count}) =>
       (super.noSuchMethod(
         Invocation.method(
           #fetchAPODData,
           [],
           {#count: count},
         ),
-        returnValue: _i5.Future<List<_i6.APODModel>>.value(<_i6.APODModel>[]),
-      ) as _i5.Future<List<_i6.APODModel>>);
+        returnValue: _i7.Future<List<_i8.APODModel>>.value(<_i8.APODModel>[]),
+      ) as _i7.Future<List<_i8.APODModel>>);
 }
 
 /// A class which mocks [APODRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAPODRepository extends _i1.Mock implements _i7.APODRepository {
+class MockAPODRepository extends _i1.Mock implements _i9.APODRepository {
   MockAPODRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i2.Either<_i8.NetworkExceptions, List<_i9.APOD>>> fetchAPODData(
+  _i7.Future<_i2.Either<_i10.NetworkExceptions, List<_i11.APOD>>> fetchAPODData(
           {required int? count}) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -88,9 +96,9 @@ class MockAPODRepository extends _i1.Mock implements _i7.APODRepository {
           [],
           {#count: count},
         ),
-        returnValue:
-            _i5.Future<_i2.Either<_i8.NetworkExceptions, List<_i9.APOD>>>.value(
-                _FakeEither_0<_i8.NetworkExceptions, List<_i9.APOD>>(
+        returnValue: _i7.Future<
+                _i2.Either<_i10.NetworkExceptions, List<_i11.APOD>>>.value(
+            _FakeEither_0<_i10.NetworkExceptions, List<_i11.APOD>>(
           this,
           Invocation.method(
             #fetchAPODData,
@@ -98,20 +106,50 @@ class MockAPODRepository extends _i1.Mock implements _i7.APODRepository {
             {#count: count},
           ),
         )),
-      ) as _i5.Future<_i2.Either<_i8.NetworkExceptions, List<_i9.APOD>>>);
+      ) as _i7.Future<_i2.Either<_i10.NetworkExceptions, List<_i11.APOD>>>);
+}
+
+/// A class which mocks [APODUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAPODUsecase extends _i1.Mock implements _i12.APODUsecase {
+  MockAPODUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<_i2.Either<_i10.NetworkExceptions, List<_i11.APOD>>> fetchAPODData(
+          {required int? count}) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchAPODData,
+          [],
+          {#count: count},
+        ),
+        returnValue: _i7.Future<
+                _i2.Either<_i10.NetworkExceptions, List<_i11.APOD>>>.value(
+            _FakeEither_0<_i10.NetworkExceptions, List<_i11.APOD>>(
+          this,
+          Invocation.method(
+            #fetchAPODData,
+            [],
+            {#count: count},
+          ),
+        )),
+      ) as _i7.Future<_i2.Either<_i10.NetworkExceptions, List<_i11.APOD>>>);
 }
 
 /// A class which mocks [NasaImageRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNasaImageRemoteDataSource extends _i1.Mock
-    implements _i10.NasaImageRemoteDataSource {
+class MockNasaImageRemoteDataSource<T extends _i4.DioClient<_i5.ClientEnum>>
+    extends _i1.Mock implements _i13.NasaImageRemoteDataSource<T> {
   MockNasaImageRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i3.NasaImageModel> fetchNasaImageData({
+  _i7.Future<_i3.NasaImageModel> fetchNasaImageData({
     required int? count,
     String? searchString,
     String? location,
@@ -132,7 +170,7 @@ class MockNasaImageRemoteDataSource extends _i1.Mock
             #endYear: endYear,
           },
         ),
-        returnValue: _i5.Future<_i3.NasaImageModel>.value(_FakeNasaImageModel_1(
+        returnValue: _i7.Future<_i3.NasaImageModel>.value(_FakeNasaImageModel_1(
           this,
           Invocation.method(
             #fetchNasaImageData,
@@ -147,5 +185,108 @@ class MockNasaImageRemoteDataSource extends _i1.Mock
             },
           ),
         )),
-      ) as _i5.Future<_i3.NasaImageModel>);
+      ) as _i7.Future<_i3.NasaImageModel>);
+}
+
+/// A class which mocks [NasaImageRepository].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNasaImageRepository extends _i1.Mock
+    implements _i14.NasaImageRepository {
+  MockNasaImageRepository() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<_i2.Either<_i10.NetworkExceptions, _i15.NasaImage>>
+      fetchNasaImageData({
+    required int? count,
+    String? searchString,
+    String? location,
+    String? keywords,
+    String? startYear,
+    String? endYear,
+  }) =>
+          (super.noSuchMethod(
+            Invocation.method(
+              #fetchNasaImageData,
+              [],
+              {
+                #count: count,
+                #searchString: searchString,
+                #location: location,
+                #keywords: keywords,
+                #startYear: startYear,
+                #endYear: endYear,
+              },
+            ),
+            returnValue: _i7.Future<
+                    _i2.Either<_i10.NetworkExceptions, _i15.NasaImage>>.value(
+                _FakeEither_0<_i10.NetworkExceptions, _i15.NasaImage>(
+              this,
+              Invocation.method(
+                #fetchNasaImageData,
+                [],
+                {
+                  #count: count,
+                  #searchString: searchString,
+                  #location: location,
+                  #keywords: keywords,
+                  #startYear: startYear,
+                  #endYear: endYear,
+                },
+              ),
+            )),
+          ) as _i7.Future<_i2.Either<_i10.NetworkExceptions, _i15.NasaImage>>);
+}
+
+/// A class which mocks [NasaImageUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNasaImageUsecase extends _i1.Mock implements _i16.NasaImageUsecase {
+  MockNasaImageUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i7.Future<_i2.Either<_i10.NetworkExceptions, _i15.NasaImage>>
+      fetchNasaImageData({
+    required int? count,
+    String? searchString,
+    String? location,
+    String? keywords,
+    String? startYear,
+    String? endYear,
+  }) =>
+          (super.noSuchMethod(
+            Invocation.method(
+              #fetchNasaImageData,
+              [],
+              {
+                #count: count,
+                #searchString: searchString,
+                #location: location,
+                #keywords: keywords,
+                #startYear: startYear,
+                #endYear: endYear,
+              },
+            ),
+            returnValue: _i7.Future<
+                    _i2.Either<_i10.NetworkExceptions, _i15.NasaImage>>.value(
+                _FakeEither_0<_i10.NetworkExceptions, _i15.NasaImage>(
+              this,
+              Invocation.method(
+                #fetchNasaImageData,
+                [],
+                {
+                  #count: count,
+                  #searchString: searchString,
+                  #location: location,
+                  #keywords: keywords,
+                  #startYear: startYear,
+                  #endYear: endYear,
+                },
+              ),
+            )),
+          ) as _i7.Future<_i2.Either<_i10.NetworkExceptions, _i15.NasaImage>>);
 }

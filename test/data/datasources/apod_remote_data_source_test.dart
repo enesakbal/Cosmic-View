@@ -20,7 +20,7 @@ void main() {
   late DioClient dioClient;
   late DioAdapter mockDioAdapter;
   late MockAPODRemoteDataSource mockAPODDataSource;
-  late APODRemoteDataSource realAPODRemoteDataSource;
+  late APODRemoteDataSource<DioClient> realAPODRemoteDataSource;
 
   late List<dynamic> dummyData;
 
@@ -34,7 +34,7 @@ void main() {
 //* LIVE
   group('APOD Remote Data Source (Fetch DATA) (real data) =>', () {
     setUp(() {
-      realAPODRemoteDataSource = APODRemoteDataSourceImpl<DioClient>(dioClient);
+      realAPODRemoteDataSource = APODRemoteDataSourceImpl(dioClient);
     });
     test('Should status code 200', () async {
       final response = await dioClient.get(UrlContants.baseApod);

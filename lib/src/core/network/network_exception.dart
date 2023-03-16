@@ -31,14 +31,14 @@ class NetworkExceptions extends Equatable implements Exception {
         break;
 
       case DioErrorType.other:
-        if (dioError.message.contains('SocketException')) {
+        if (dioError.message.contains('SocketException') || dioError.message.contains('No Internet')) {
           message = 'No Internet';
           break;
         } else {
           message = 'Unexpected error occurred';
           break;
         }
-         default:
+      default:
         message = 'Something went wrong';
         break;
     }
