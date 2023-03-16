@@ -11,7 +11,6 @@ class HomeView extends HookWidget {
         child: Container(
           width: 100,
           height: 100,
-          color: Colors.green,
           child: const Text('data'),
         ),
       ),

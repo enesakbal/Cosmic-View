@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_loggy/flutter_loggy.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:loggy/loggy.dart';
 
 import 'src/config/app_router.dart';
@@ -36,20 +37,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Cosmos View',
-      theme: AppTheme().theme,
-      routerDelegate: AutoRouterDelegate(
-        router,
-        navigatorObservers: () => [
-          NavigatorObservers(),
-        ],
-      ),
-      routeInformationParser: router.defaultRouteParser(),
-      debugShowCheckedModeBanner: false,
-    );
+    return ScreenUtilInit(
+        designSize: const Size(360, 800),
+        minTextAdapt: true,
+        builder: (context, _) {
+          return MaterialApp.router(
+            title: 'Cosmos View',
+            theme: AppTheme().theme,
+            routerDelegate: AutoRouterDelegate(
+              router,
+              navigatorObservers: () => [
+                NavigatorObservers(),
+              ],
+            ),
+            routeInformationParser: router.defaultRouteParser(),
+            debugShowCheckedModeBanner: false,
+          );
+        });
   }
 
-  //* fluttergen'i kurabilmek için Xcode'u update et. (brew install FlutterGen/tap/fluttergen)
-  //* ikinci apinin modelini ve entitiysini oluştur. ona özel bir data soruce yaz daha sonra hepsinin testini yaz.
 }

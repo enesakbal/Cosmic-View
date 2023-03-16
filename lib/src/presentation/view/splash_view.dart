@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rive/rive.dart';
 
 import '../../../main.dart';
 import '../../config/app_router.dart';
+import '../../core/rive/rive_assets.dart';
 
 class SplashView extends HookWidget {
   const SplashView({super.key});
@@ -19,12 +21,11 @@ class SplashView extends HookWidget {
     });
 
     return Scaffold(
-      backgroundColor: Color(0XFF151421),
       body: Center(
         child: Container(
-          width: 250,
-          child: RiveAnimation.asset(
-            'assets/animation/superman.riv',
+          width: 200.w,
+          child: const RiveAnimation.asset(
+            RiveAssets.supermanPath,
             fit: BoxFit.fitWidth,
           ),
         ),
