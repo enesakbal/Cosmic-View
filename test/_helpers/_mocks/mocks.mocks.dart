@@ -3,14 +3,18 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
-import 'package:cosmicview/src/core/network/network_exception.dart' as _i7;
+import 'package:cosmicview/src/core/network/network_exception.dart' as _i8;
 import 'package:cosmicview/src/data/datasources/remote/apod/apod_remote_data_source.dart'
+    as _i4;
+import 'package:cosmicview/src/data/datasources/remote/nasa_image/nasa_image_remote_data_source.dart'
+    as _i10;
+import 'package:cosmicview/src/data/models/apod_model.dart' as _i6;
+import 'package:cosmicview/src/data/models/nasa_image_model/nasa_image_model.dart'
     as _i3;
-import 'package:cosmicview/src/data/models/apod_model.dart' as _i5;
-import 'package:cosmicview/src/domain/entities/apod.dart' as _i8;
-import 'package:cosmicview/src/domain/repositories/apod_repository.dart' as _i6;
+import 'package:cosmicview/src/domain/entities/apod.dart' as _i9;
+import 'package:cosmicview/src/domain/repositories/apod_repository.dart' as _i7;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -35,53 +39,113 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
+class _FakeNasaImageModel_1 extends _i1.SmartFake
+    implements _i3.NasaImageModel {
+  _FakeNasaImageModel_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [APODRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAPODRemoteDataSource extends _i1.Mock
-    implements _i3.APODRemoteDataSource {
+    implements _i4.APODRemoteDataSource {
   MockAPODRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<List<_i5.APODModel>> getAPODData({required int? count}) =>
+  _i5.Future<List<_i6.APODModel>> fetchAPODData({required int? count}) =>
       (super.noSuchMethod(
         Invocation.method(
-          #getAPODData,
+          #fetchAPODData,
           [],
           {#count: count},
         ),
-        returnValue: _i4.Future<List<_i5.APODModel>>.value(<_i5.APODModel>[]),
-      ) as _i4.Future<List<_i5.APODModel>>);
+        returnValue: _i5.Future<List<_i6.APODModel>>.value(<_i6.APODModel>[]),
+      ) as _i5.Future<List<_i6.APODModel>>);
 }
 
 /// A class which mocks [APODRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAPODRepository extends _i1.Mock implements _i6.APODRepository {
+class MockAPODRepository extends _i1.Mock implements _i7.APODRepository {
   MockAPODRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i7.NetworkExceptions, List<_i8.APOD>>> getAPODData(
+  _i5.Future<_i2.Either<_i8.NetworkExceptions, List<_i9.APOD>>> fetchAPODData(
           {required int? count}) =>
       (super.noSuchMethod(
         Invocation.method(
-          #getAPODData,
+          #fetchAPODData,
           [],
           {#count: count},
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i7.NetworkExceptions, List<_i8.APOD>>>.value(
-                _FakeEither_0<_i7.NetworkExceptions, List<_i8.APOD>>(
+            _i5.Future<_i2.Either<_i8.NetworkExceptions, List<_i9.APOD>>>.value(
+                _FakeEither_0<_i8.NetworkExceptions, List<_i9.APOD>>(
           this,
           Invocation.method(
-            #getAPODData,
+            #fetchAPODData,
             [],
             {#count: count},
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i7.NetworkExceptions, List<_i8.APOD>>>);
+      ) as _i5.Future<_i2.Either<_i8.NetworkExceptions, List<_i9.APOD>>>);
+}
+
+/// A class which mocks [NasaImageRemoteDataSource].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNasaImageRemoteDataSource extends _i1.Mock
+    implements _i10.NasaImageRemoteDataSource {
+  MockNasaImageRemoteDataSource() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i3.NasaImageModel> fetchNasaImageData({
+    required int? count,
+    String? searchString,
+    String? location,
+    String? keywords,
+    String? startYear,
+    String? endYear,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchNasaImageData,
+          [],
+          {
+            #count: count,
+            #searchString: searchString,
+            #location: location,
+            #keywords: keywords,
+            #startYear: startYear,
+            #endYear: endYear,
+          },
+        ),
+        returnValue: _i5.Future<_i3.NasaImageModel>.value(_FakeNasaImageModel_1(
+          this,
+          Invocation.method(
+            #fetchNasaImageData,
+            [],
+            {
+              #count: count,
+              #searchString: searchString,
+              #location: location,
+              #keywords: keywords,
+              #startYear: startYear,
+              #endYear: endYear,
+            },
+          ),
+        )),
+      ) as _i5.Future<_i3.NasaImageModel>);
 }
