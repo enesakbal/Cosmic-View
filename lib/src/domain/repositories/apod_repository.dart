@@ -4,5 +4,6 @@ import '../../core/network/network_exception.dart';
 import '../entities/apod.dart';
 
 abstract class APODRepository {
-  Future<Either<NetworkExceptions, List<APOD>>> getAPODData({required int count});
+  Future<Either<NetworkExceptions, List<APOD>>> fetchAPODData(
+      {required int count});
 }

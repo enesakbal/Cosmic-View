@@ -9,7 +9,8 @@ class APODUsecase {
 
   APODUsecase(this._repository);
 
-  Future<Either<NetworkExceptions, List<APOD>>> getAPODData({required int count}) {
-    return _repository.getAPODData(count: count);
+  Future<Either<NetworkExceptions, List<APOD>>> fetchAPODData(
+      {required int count}) {
+    return _repository.fetchAPODData(count: count);
   }
 }

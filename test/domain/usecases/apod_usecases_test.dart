@@ -45,12 +45,12 @@ void main() {
   group('APOD Repository (GET DATA) (dummy data) =>', () {
     const testCount = 20;
     test('Should get all data from repository', () async {
-      when(mockApodRepository.getAPODData(count: testCount))
+      when(mockApodRepository.fetchAPODData(count: testCount))
           .thenAnswer((_) async {
         return Right(dummyData);
       });
 
-      final response = await apodUsecase.getAPODData(count: testCount);
+      final response = await apodUsecase.fetchAPODData(count: testCount);
 
       expect(response.isRight(), true);
       expect(response, equals(Right(dummyData)));
@@ -63,12 +63,12 @@ void main() {
         error: 'Something went wrong. (TEST ERROR)',
       ));
 
-      when(mockApodRepository.getAPODData(count: testCount))
+      when(mockApodRepository.fetchAPODData(count: testCount))
           .thenAnswer((_) async {
         return Left(error);
       });
 
-      final response = await apodUsecase.getAPODData(count: testCount);
+      final response = await apodUsecase.fetchAPODData(count: testCount);
 
       expect(response.isLeft(), true);
       expect(response, equals(Left(error)));
