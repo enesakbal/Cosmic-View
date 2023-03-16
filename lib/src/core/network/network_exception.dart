@@ -38,8 +38,10 @@ class NetworkExceptions extends Equatable implements Exception {
           message = 'Unexpected error occurred';
           break;
         }
+         default:
+        message = 'Something went wrong';
+        break;
     }
-    message = 'Something went wrong';
   }
 
   late String message;

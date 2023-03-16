@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rive/rive.dart';
 
+import '../../../gen/assets.gen.dart';
 import '../../../main.dart';
 import '../../config/app_router.dart';
 import '../../core/rive/rive_assets.dart';
@@ -13,8 +14,8 @@ class SplashView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     useEffect(() {
-      Future.delayed(const Duration(seconds: 3), () {
-        router.replace(const HomeRoute());
+      Future.delayed(const Duration(seconds: 1), () {
+        router.replace(HomeRoute());
       });
 
       return () {};
@@ -24,8 +25,8 @@ class SplashView extends HookWidget {
       body: Center(
         child: Container(
           width: 200.w,
-          child: const RiveAnimation.asset(
-            RiveAssets.supermanPath,
+          child: RiveAnimation.asset(
+            Assets.animation.superman,
             fit: BoxFit.fitWidth,
           ),
         ),
