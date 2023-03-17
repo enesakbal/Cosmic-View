@@ -27,7 +27,7 @@ Future<void> init() async {
         () => NasaImageClient(injector()))
 
     //* DATA SOURCES
-    ..registerLazySingleton<APODRemoteDataSource<APODClient>>(
+    ..registerLazySingleton<APODRemoteDataSource>(
         () => APODRemoteDataSourceImpl<APODClient>(injector()))
     ..registerLazySingleton<NasaImageRemoteDataSource<NasaImageClient>>(
         () => NasaImageRemoteDataSourceImpl(injector()))
