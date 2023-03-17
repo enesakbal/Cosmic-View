@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cosmicview/src/core/constants/url_constants.dart';
 import 'package:cosmicview/src/core/enums/dio_client_enum.dart';
+import 'package:cosmicview/src/core/network/apod_client/apod_client.dart';
 import 'package:cosmicview/src/core/network/dio_client.dart';
 import 'package:cosmicview/src/core/network/network_exception.dart';
 import 'package:cosmicview/src/data/datasources/remote/nasa_image/nasa_image_remote_data_source.dart';
@@ -28,7 +29,7 @@ void main() {
   //* live
   late NasaImageRepository realNasaImageRepository;
   late NasaImageRemoteDataSource realNasaImageRemoteDataSource;
-  late DioClient<ClientEnum> client;
+  late NasaImageClient nasaImageclient;
   late Dio dio;
 
   late NasaImageUsecase usecase;
@@ -43,8 +44,8 @@ void main() {
 //* live
   group('Nasa Image Repository (FETCH DATA) (real data) =>', () {
     setUp(() {
-      client = DioClient(dio, ClientEnum.NASA_IMAGE_CLIENT);
-      realNasaImageRemoteDataSource = NasaImageRemoteDataSourceImpl(client);
+      nasaImageclient = NasaImageClient(dio);
+      realNasaImageRemoteDataSource = NasaImageRemoteDataSourceImpl(nasaImageclient);
       realNasaImageRepository =
           NasaImageRepositoryImpl(realNasaImageRemoteDataSource);
       usecase = NasaImageUsecase(realNasaImageRepository);

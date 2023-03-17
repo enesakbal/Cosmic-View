@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cosmicview/src/core/constants/url_constants.dart';
 import 'package:cosmicview/src/core/enums/dio_client_enum.dart';
+import 'package:cosmicview/src/core/network/apod_client/apod_client.dart';
 import 'package:cosmicview/src/core/network/dio_client.dart';
 import 'package:cosmicview/src/core/network/network_exception.dart';
 import 'package:cosmicview/src/data/datasources/remote/apod/apod_remote_data_source.dart';
@@ -28,7 +29,7 @@ void main() {
   //* live
   late APODRepository realAPODRepository;
   late APODRemoteDataSource realAPODRemoteDataSource;
-  late DioClient<ClientEnum> client;
+  late APODClient client;
   late Dio dio;
 
   late APODUsecase usecase;
@@ -43,7 +44,7 @@ void main() {
   //* live
   group('APOD Repository (FETCH DATA) (real data) =>', () {
     setUp(() {
-      client = DioClient(dio, ClientEnum.APOD_CLIENT);
+      client = APODClient(dio);
       realAPODRemoteDataSource = APODRemoteDataSourceImpl(client);
       realAPODRepository = APODRepositoryImpl(realAPODRemoteDataSource);
       usecase = APODUsecase(realAPODRepository);

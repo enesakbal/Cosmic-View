@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/enums/dio_client_enum.dart';
+import 'core/network/apod_client/apod_client.dart';
 import 'core/network/dio_client.dart';
 import 'data/datasources/remote/apod/apod_remote_data_source.dart';
 import 'data/datasources/remote/nasa_image/nasa_image_remote_data_source.dart';
@@ -20,15 +21,15 @@ Future<void> init() async {
 
     //* NETWORK
     ..registerLazySingleton(Dio.new)
-    ..registerLazySingleton(
-        () => DioClient<ClientEnum>(injector(), ClientEnum.APOD_CLIENT))
-    ..registerLazySingleton(
-        () => DioClient<ClientEnum>(injector(), ClientEnum.NASA_IMAGE_CLIENT))
+    ..registerLazySingleton<APODClient>(
+        () => APODClient(injector()))
+    ..registerLazySingleton<NasaImageClient>(
+        () => NasaImageClient(injector()))
 
     //* DATA SOURCES
-    ..registerLazySingleton<APODRemoteDataSource<DioClient<ClientEnum>>>(
-        () => APODRemoteDataSourceImpl(injector()))
-    ..registerLazySingleton<NasaImageRemoteDataSource<DioClient<ClientEnum>>>(
+    ..registerLazySingleton<APODRemoteDataSource<APODClient>>(
+        () => APODRemoteDataSourceImpl<APODClient>(injector()))
+    ..registerLazySingleton<NasaImageRemoteDataSource<NasaImageClient>>(
         () => NasaImageRemoteDataSourceImpl(injector()))
 
     //* REPOSITORY

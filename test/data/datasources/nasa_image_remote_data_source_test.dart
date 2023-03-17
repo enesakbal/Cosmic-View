@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cosmicview/src/core/constants/url_constants.dart';
 import 'package:cosmicview/src/core/enums/dio_client_enum.dart';
+import 'package:cosmicview/src/core/network/apod_client/apod_client.dart';
 import 'package:cosmicview/src/core/network/dio_client.dart';
 import 'package:cosmicview/src/data/datasources/remote/nasa_image/nasa_image_remote_data_source.dart';
 import 'package:cosmicview/src/data/models/nasa_image_model/collection_model.dart';
@@ -18,16 +19,16 @@ import '../../_helpers/json_reader.dart';
 void main() {
   dotenv.testLoad(fileInput: File('.env').readAsStringSync());
   late Dio dio;
-  late DioClient dioClient;
+  late NasaImageClient nasaImageClient;
   late DioAdapter mockDioAdapter;
   late MockNasaImageRemoteDataSource mockNasaImageDataSource;
-  late NasaImageRemoteDataSource<DioClient> realNasaImageDataSource;
+  late NasaImageRemoteDataSource<BaseClient> realNasaImageDataSource;
 
   late Map<String, dynamic> dummyData;
 
   setUp(() {
     dio = Dio();
-    dioClient = DioClient(dio, ClientEnum.NASA_IMAGE_CLIENT);
+    nasaImageClient = NasaImageClient(dio);
 
     dummyData = readJson('nasa_image_dummy_data.json') as Map<String, dynamic>;
   });
@@ -35,11 +36,11 @@ void main() {
 //* LIVE
   group('Nasa Image Remote Data source (FETCH DATA) (real data) =>', () {
     setUp(() {
-      realNasaImageDataSource = NasaImageRemoteDataSourceImpl(dioClient);
+      realNasaImageDataSource = NasaImageRemoteDataSourceImpl(nasaImageClient);
     });
 
     test('Should status code 200', () async {
-      final response = await dioClient.get(UrlContants.searchNasaImage,
+      final response = await nasaImageClient.get(UrlContants.searchNasaImage,
           queryParameters: {'keywords': 'cosmos,hubble'});
 
       expect(response.statusCode, 200);
@@ -83,7 +84,7 @@ void main() {
       mockDioAdapter.onGet(UrlContants.searchNasaImage,
           (server) => server.reply(200, dummyData));
 
-      final response = await dioClient.get(
+      final response = await nasaImageClient.get(
         UrlContants.searchNasaImage,
         queryParameters: map,
       );

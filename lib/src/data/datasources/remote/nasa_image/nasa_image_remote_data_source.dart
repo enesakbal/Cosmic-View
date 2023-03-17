@@ -3,12 +3,12 @@ import '../../../../core/enums/dio_client_enum.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../models/nasa_image_model/nasa_image_model.dart';
 
-abstract class NasaImageRemoteDataSource<T extends DioClient> {
-  final T _dioClient;
+abstract class NasaImageRemoteDataSource<T extends BaseClient> {
+  final T _BaseClient;
 
-  NasaImageRemoteDataSource(this._dioClient)
+  NasaImageRemoteDataSource(this._BaseClient)
       : assert(
-          _dioClient.clientType == ClientEnum.NASA_IMAGE_CLIENT,
+          _BaseClient.clientType == ClientEnum.NASA_IMAGE_CLIENT,
           "CLIENT TYPE MUST BE 'NASA_IMAGE_CLIENT'",
         );
 
@@ -22,8 +22,8 @@ abstract class NasaImageRemoteDataSource<T extends DioClient> {
   });
 }
 
-class NasaImageRemoteDataSourceImpl extends NasaImageRemoteDataSource {
-  NasaImageRemoteDataSourceImpl(super.dioClient);
+class NasaImageRemoteDataSourceImpl<T extends BaseClient> extends NasaImageRemoteDataSource<T> {
+  NasaImageRemoteDataSourceImpl(super.BaseClient);
 
   @override
   Future<NasaImageModel> fetchNasaImageData({
@@ -61,7 +61,7 @@ class NasaImageRemoteDataSourceImpl extends NasaImageRemoteDataSource {
         map['year_end'] = endYear;
       }
 
-      final response = await _dioClient.get(
+      final response = await _BaseClient.get(
         UrlContants.searchNasaImage,
         queryParameters: map,
       );

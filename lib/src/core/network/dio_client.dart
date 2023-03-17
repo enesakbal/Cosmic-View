@@ -6,16 +6,16 @@ import 'package:flutter_loggy_dio/flutter_loggy_dio.dart';
 
 import '../enums/dio_client_enum.dart';
 
-class DioClient<T extends ClientEnum> {
+abstract class BaseClient<T extends ClientEnum> {
   // dio instance
   final Dio _dio;
   final T clientType;
 
   // injecting dio instance
-  DioClient(
-    this._dio,
-    this.clientType,
-  ) {
+  BaseClient(
+    this._dio, {
+    required this.clientType,
+  }) {
     _dio
       ..options.baseUrl = clientType.getBaseURL()
       ..options.connectTimeout = connectionTimeout

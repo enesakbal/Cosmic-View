@@ -60,3 +60,15 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+//* bloc tarafının testini tekrar yaz. şöyle bir senaryo olabilir. apod verisi saatlik 5000 ile sınırlı 
+//* testi kullanmak amacıyla, eğer apoddan veri gelmezse üstte çıkacak ve yana kaydırdıkça ilerleyecek olan cardları gösterme
+//* yalnızca bir akış olsun 
+//* favori sayfasını şöyle yapabilirsin
+//* herhangi bir X yazısını favoriye atarsan, gönderinin tüm verileri locale kayıt et.
+//* hem model olarak kayıt et (dao ve sqflite) hem de resmi kayıt et (bytes)
+//* offline iken bu datalar görünür olur ve ana sayfada ufak bir yazı koyarsın retry dediğinde tekrar istek atmaya çalışır.
+//* bunların da dışında lazy loading yapmalısın
+//* hangi apiyi nerede kullanacağına henüz karar vermedin
+//* ancak şurası kesin olmalı ki akış sayfasında aşağı inildikçe 5'er veya 10'ar olarak tekrar istek atmalısın.
+//* ikinci api bunu için daha uygun çünkü bir sınırı yok

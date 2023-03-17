@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cosmicview/src/core/constants/url_constants.dart';
 import 'package:cosmicview/src/core/enums/dio_client_enum.dart';
+import 'package:cosmicview/src/core/network/apod_client/apod_client.dart';
 import 'package:cosmicview/src/core/network/dio_client.dart';
 import 'package:cosmicview/src/data/datasources/remote/apod/apod_remote_data_source.dart';
 import 'package:cosmicview/src/data/models/apod_model/apod_model.dart';
@@ -17,16 +18,16 @@ import '../../_helpers/json_reader.dart';
 void main() {
   dotenv.testLoad(fileInput: File('.env').readAsStringSync());
   late Dio dio;
-  late DioClient dioClient;
+  late APODClient apodClient;
   late DioAdapter mockDioAdapter;
   late MockAPODRemoteDataSource mockAPODDataSource;
-  late APODRemoteDataSource<DioClient> realAPODRemoteDataSource;
+  late APODRemoteDataSource<BaseClient> realAPODRemoteDataSource;
 
   late List<dynamic> dummyData;
 
   setUp(() {
     dio = Dio();
-    dioClient = DioClient(dio, ClientEnum.APOD_CLIENT);
+    apodClient = APODClient(dio);
 
     dummyData = readJson('apod_dummy_data.json') as List<dynamic>;
   });
@@ -34,10 +35,10 @@ void main() {
 //* LIVE
   group('APOD Remote Data Source (Fetch DATA) (real data) =>', () {
     setUp(() {
-      realAPODRemoteDataSource = APODRemoteDataSourceImpl(dioClient);
+      realAPODRemoteDataSource = APODRemoteDataSourceImpl(apodClient);
     });
     test('Should status code 200', () async {
-      final response = await dioClient.get(UrlContants.baseApod);
+      final response = await apodClient.get(UrlContants.baseApod);
 
       expect(response.statusCode, 200);
     });
@@ -70,7 +71,7 @@ void main() {
         (server) => server.reply(200, dummyData),
       );
       //* onGet: Diyelim ki servise gittik ve bize bu sonucu verdi
-      final response = await dioClient.get(UrlContants.baseApod);
+      final response = await apodClient.get(UrlContants.baseApod);
 
       expect(response.statusCode, 200);
     });

@@ -3,24 +3,25 @@ import '../../../../core/enums/dio_client_enum.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../models/apod_model/apod_model.dart';
 
-abstract class APODRemoteDataSource<T extends DioClient> {
-  final T _dioClient;
+abstract class APODRemoteDataSource<T extends BaseClient> {
+  final T _baseClient;
 
-  APODRemoteDataSource(this._dioClient)
-      : assert(_dioClient.clientType == ClientEnum.APOD_CLIENT,
+  APODRemoteDataSource(this._baseClient)
+      : assert(_baseClient.clientType == ClientEnum.APOD_CLIENT,
             "CLIENT TYPE MUST BE 'APOD'");
 
   Future<List<APODModel>> fetchAPODData({required int count});
 }
 
-class APODRemoteDataSourceImpl extends APODRemoteDataSource {
-  APODRemoteDataSourceImpl(super.dioClient);
+class APODRemoteDataSourceImpl<T extends BaseClient> extends APODRemoteDataSource<T> {
+  APODRemoteDataSourceImpl(super._baseClient);
 
   @override
   Future<List<APODModel>> fetchAPODData({required int count}) async {
     try {
-      final response = await _dioClient
-          .get(UrlContants.baseApod, queryParameters: {'count': count});
+      final response = await _baseClient
+          .get(UrlContants.baseApod,
+          queryParameters: {'count': count});
       final data = response.data! as List<dynamic>;
       final dataList = data
           .map((e) => APODModel.fromJson(e as Map<String, dynamic>))
