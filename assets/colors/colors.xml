@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary" type="material">#151421</color>
+    <color name="dark" type="material">#3F4148</color>
+    <color name="grey" type="material">#8F8F92</color>
+    <color name="green" type="material">#39BD8D</color>
+    <color name="red" type="material">#F33434</color>
+    <color name="blue" type="material">#699AF9</color>
+    <color name="purple" type="material">#976FCB</color>
+    <color name="pale_sky" type="material">#5D6470</color>
+    <color name="teal" type="material">#67BDE2</color>
+    <color name="pale_red" type="material">#FF956E</color>
+</resources>

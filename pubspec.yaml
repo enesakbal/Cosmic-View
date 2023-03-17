@@ -63,6 +63,31 @@ dev_dependencies:
     sdk: flutter
   very_good_analysis: ^3.1.0
 
+flutter_gen:
+  output: lib/src/config/gen/
+  inputs:
+    - assets/images/
+    - assets/colors/
+    - assets/animation/
+  
+
+
+  integrations:
+    flutter_svg: true
+    lottie: true
+
+  fonts:
+    enabled: true
+    outputs:
+      class_name: FontFamily
+
+  colors:
+    enabled: true
+    outputs:
+      class_name: ColorTones
+    inputs:
+      - assets/colors/colors.xml
+
 flutter:
   uses-material-design: true
 

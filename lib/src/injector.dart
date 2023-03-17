@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-import 'core/network/apod_client/apod_client.dart';
+import 'core/network/app_clients/app_clients.dart';
 import 'data/datasources/remote/apod/apod_remote_data_source.dart';
 import 'data/datasources/remote/nasa_image/nasa_image_remote_data_source.dart';
 import 'data/repositories/apod_repository_impl.dart';

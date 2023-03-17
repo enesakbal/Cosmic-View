@@ -3,9 +3,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:rive/rive.dart';
 
-import '../../../gen/assets.gen.dart';
 import '../../../main.dart';
 import '../../config/app_router.dart';
+import '../../config/gen/assets.gen.dart';
 
 class SplashView extends HookWidget {
   const SplashView({super.key});

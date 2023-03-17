@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'color_tones.dart';
+import '../../config/gen/colors.gen.dart';
 
 class AppTheme {
   ThemeData get theme => ThemeData(
@@ -9,6 +9,6 @@ class AppTheme {
           centerTitle: false,
           elevation: 0,
         ),
-        scaffoldBackgroundColor: ColorTones.primaryColor,
+        scaffoldBackgroundColor: ColorTones.primary,
       );
 }
