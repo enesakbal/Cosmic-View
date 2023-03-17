@@ -4,7 +4,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/components/custom_text_form_field.dart';
-import '../../domain/entities/apod.dart';
 import '../_widget/apod_carousel.dart';
 import '../bloc/home/home_bloc.dart';
 
@@ -54,7 +53,7 @@ class HomeView extends HookWidget {
         if (state is HomeHasData) {
           return APODCarousel(apodList: state.dataList);
         }
-          return APODCarousel(apodList: []);
+          return const APODCarousel(apodList: []);
       },
     );
   }

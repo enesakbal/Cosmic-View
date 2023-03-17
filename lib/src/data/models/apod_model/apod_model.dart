@@ -3,7 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../../../domain/entities/apod.dart';
 
-
 part 'apod_model.g.dart';
 
 @JsonSerializable()

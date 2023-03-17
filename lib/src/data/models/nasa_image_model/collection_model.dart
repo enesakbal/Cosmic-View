@@ -3,7 +3,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../../../domain/entities/nasa_image/collection.dart';
 import 'item_model.dart';
-
 import 'link_model.dart';
 import 'metadata_model.dart';
 
