@@ -1,3 +1,5 @@
+import 'package:cosmicview/src/presentation/bloc/apod/apod_bloc.dart';
+import 'package:cosmicview/src/presentation/bloc/nasa_image/nasa_image_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -10,7 +12,6 @@ import 'domain/repositories/apod_repository.dart';
 import 'domain/repositories/nasa_image_repository.dart';
 import 'domain/usecases/apod_usecase.dart';
 import 'domain/usecases/nasa_image_usecase.dart';
-import 'presentation/bloc/home/home_bloc.dart';
 
 final injector = GetIt.instance;
 
@@ -18,17 +19,14 @@ Future<void> init() async {
   injector
 
     //* NETWORK
-    ..registerLazySingleton(Dio.new)
-    ..registerLazySingleton<APODClient>(
-        () => APODClient(injector()))
-    ..registerLazySingleton<NasaImageClient>(
-        () => NasaImageClient(injector()))
+    ..registerLazySingleton<APODClient>(() => APODClient(Dio()))
+    ..registerLazySingleton<NasaImageClient>(() => NasaImageClient(Dio()))
 
     //* DATA SOURCES
     ..registerLazySingleton<APODRemoteDataSource>(
         () => APODRemoteDataSourceImpl<APODClient>(injector()))
-    ..registerLazySingleton<NasaImageRemoteDataSource<NasaImageClient>>(
-        () => NasaImageRemoteDataSourceImpl(injector()))
+    ..registerLazySingleton<NasaImageRemoteDataSource>(
+        () => NasaImageRemoteDataSourceImpl<NasaImageClient>(injector()))
 
     //* REPOSITORY
     ..registerLazySingleton<APODRepository>(
@@ -42,5 +40,6 @@ Future<void> init() async {
         () => NasaImageUsecase(injector()))
 
     //* BLOC
-    ..registerFactory(() => HomeBloc(injector()));
+    ..registerFactory(() => APODBloc(injector()))
+    ..registerFactory(() => NasaImageBloc(injector()));
 }

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cosmicview/src/presentation/bloc/nasa_image/nasa_image_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,7 @@ import 'src/config/app_router.dart';
 import 'src/config/navigator_observers.dart';
 import 'src/core/theme/app_theme.dart';
 import 'src/injector.dart' as di;
-import 'src/presentation/bloc/home/home_bloc.dart';
+import 'src/presentation/bloc/apod/apod_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,7 +40,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => di.injector<HomeBloc>())],
+      providers: [
+        BlocProvider(create: (context) => di.injector<APODBloc>()),
+        BlocProvider(create: (context) => di.injector<NasaImageBloc>()),
+      ],
       child: ScreenUtilInit(
           designSize: const Size(360, 800),
           minTextAdapt: true,

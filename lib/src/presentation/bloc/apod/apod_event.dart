@@ -1,13 +1,13 @@
-part of 'home_bloc.dart';
+part of 'apod_bloc.dart';
 
-abstract class HomeEvent extends Equatable {
-  const HomeEvent();
+abstract class APODEvent extends Equatable {
+  const APODEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class FetchApodData extends HomeEvent {
+class FetchApodData extends APODEvent {
   final int count;
 
   const FetchApodData({required this.count});

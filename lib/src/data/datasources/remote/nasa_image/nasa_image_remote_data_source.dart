@@ -1,10 +1,11 @@
 import '../../../../core/constants/url_constants.dart';
 import '../../../../core/enums/dio_client_enum.dart';
+import '../../../../core/network/app_clients/app_clients.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../models/nasa_image_model/nasa_image_model.dart';
 
 abstract class NasaImageRemoteDataSource<T extends BaseClient> {
-  final T _baseClient;
+  final NasaImageClient _baseClient;
 
   NasaImageRemoteDataSource(this._baseClient)
       : assert(
@@ -34,16 +35,16 @@ class NasaImageRemoteDataSourceImpl<T extends BaseClient> extends NasaImageRemot
     String? startYear,
     String? endYear,
   }) async {
-    assert(
-      searchString != null || keywords != null,
-      'SEARCHSTRING OR KEYWORDS MUST BE NOT NULL',
-    );
+    // assert(
+    //   searchString != null || keywords != null,
+    //   'SEARCHSTRING OR KEYWORDS MUST BE NOT NULL',
+    // );
 
-    assert(
-      (searchString != null && searchString.isNotEmpty) ||
-          (keywords != null && keywords.isNotEmpty),
-      'SEARCHSTRING OR KEYWORDS MUST BE NOT NULL',
-    );
+    // assert(
+    //   (searchString != null && searchString.isNotEmpty) ||
+    //       (keywords != null && keywords.isNotEmpty),
+    //   'SEARCHSTRING OR KEYWORDS MUST BE NOT NULL',
+    // );
     try {
       final map = {
         'page_size': count,

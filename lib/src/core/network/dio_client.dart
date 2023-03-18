@@ -34,6 +34,13 @@ abstract class BaseClient<T extends ClientEnum> {
           ],
         ),
       );
+
+    print(_dio.options.headers);
+    print(_dio.options.baseUrl);
+  }
+
+  String enes() {
+    return clientType.getBaseURL();
   }
 
   /// * GET
@@ -48,7 +55,6 @@ abstract class BaseClient<T extends ClientEnum> {
       final response = await _dio.get(
         url,
         queryParameters: queryParameters,
-        options: options,
         cancelToken: cancelToken,
         onReceiveProgress: onReceiveProgress,
       );
