@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-import '../../core/network/app_clients/app_clients.dart';
 import '../../core/network/network_exception.dart';
 import '../../domain/entities/nasa_image/nasa_image.dart';
 import '../../domain/repositories/nasa_image_repository.dart';

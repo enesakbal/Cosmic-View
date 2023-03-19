@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../config/gen/assets.gen.dart';
 import '../../config/gen/colors.gen.dart';
 import '../../core/components/custom_text_form_field.dart';
 import '../_widget/apod/apod_bloc_widget.dart';
-import '../_widget/nasa_image/nasa_image_bloc_widget.dart';
 import '../_widget/nasa_image/nasa_image_card_list.dart';
 import '../bloc/apod/apod_bloc.dart';
 import '../bloc/nasa_image/nasa_image_bloc.dart';

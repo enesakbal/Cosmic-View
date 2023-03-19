@@ -1,5 +1,3 @@
-import 'package:cosmicview/src/presentation/bloc/apod/apod_bloc.dart';
-import 'package:cosmicview/src/presentation/bloc/nasa_image/nasa_image_bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -12,6 +10,8 @@ import 'domain/repositories/apod_repository.dart';
 import 'domain/repositories/nasa_image_repository.dart';
 import 'domain/usecases/apod_usecase.dart';
 import 'domain/usecases/nasa_image_usecase.dart';
+import 'presentation/bloc/apod/apod_bloc.dart';
+import 'presentation/bloc/nasa_image/nasa_image_bloc.dart';
 
 final injector = GetIt.instance;
 
